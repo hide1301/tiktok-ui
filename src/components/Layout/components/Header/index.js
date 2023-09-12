@@ -9,13 +9,13 @@ import {
     faEarthAsia,
     faQuestionCircle,
     faKeyboard,
-    faCloudUpload,
-    faPeopleArrows,
     faUser,
     faGear,
-    faCoins,
     faSignOut,
+    faArrowUpFromBracket,
 } from '@fortawesome/free-solid-svg-icons'
+import { faBitcoin } from '@fortawesome/free-brands-svg-icons'
+
 import Tippy from '@tippyjs/react'
 import HeadlessTippy from '@tippyjs/react/headless'
 import 'tippy.js/dist/tippy.css'
@@ -26,7 +26,7 @@ import styles from './Header.module.scss'
 import images from '~/assets/images'
 import AccountItem from '~/components/AccountItem'
 import Menu from '~/components/Popper/Menu'
-import { faBitcoin } from '@fortawesome/free-brands-svg-icons'
+import Image from '~/components/Image'
 
 const cx = className.bind(styles)
 
@@ -149,7 +149,7 @@ function Header() {
                         <>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <FontAwesomeIcon icon={faArrowUpFromBracket} />
                                 </button>
                             </Tippy>
                         </>
@@ -161,9 +161,9 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
-                                src="https://instagram.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/366008201_17977216502408704_5832993514490000641_n.jpg?stp=dst-jpg_e15&_nc_ht=instagram.fsgn2-5.fna.fbcdn.net&_nc_cat=104&_nc_ohc=MQhYNdIBAAcAX_6K3py&edm=ACWDqb8AAAAA&ccb=7-5&_nc_e2o=f&oh=00_AfBEqpQNDSMCrhHdqERArqGnyIFnAz9B9oiv94eHdmsVjA&oe=6501364E&_nc_sid=ee9879"
+                            <Image
                                 className={cx('user-avatar')}
+                                src="https://instagram.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/366008201_17977216502408704_5832993514490000641_n.jpg?stp=dst-jpg_e15&_nc_ht=instagram.fsgn2-5.fna.fbcdn.net&_nc_cat=104&_nc_ohc=MQhYNdIBAAcAX_6K3py&edm=ACWDqb8AAAAA&ccb=7-5&_nc_e2o=f&oh=00_AfBEqpQNDSMCrhHdqERArqGnyIFnAz9B9oiv94eHdmsVjA&oe=6501364E&_nc_sid=ee9879"
                                 alt="Nguyen Van A"
                             />
                         ) : (

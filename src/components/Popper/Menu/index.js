@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import className from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
 
