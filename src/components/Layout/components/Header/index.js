@@ -12,7 +12,6 @@ import {
     faUser,
     faGear,
     faSignOut,
-    faArrowUpFromBracket,
 } from '@fortawesome/free-solid-svg-icons'
 import { faBitcoin } from '@fortawesome/free-brands-svg-icons'
 
@@ -27,6 +26,7 @@ import images from '~/assets/images'
 import AccountItem from '~/components/AccountItem'
 import Menu from '~/components/Popper/Menu'
 import Image from '~/components/Image'
+import { MessageIcon, UploadIcon, InboxIcon } from '~/components/Icons'
 
 const cx = className.bind(styles)
 
@@ -147,9 +147,20 @@ function Header() {
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+                            <Tippy delay={[0, 50]} content="Upload video" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 50]} content="Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 50]} content="Inbox" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon />
+                                    {/* <span className={cx('badge')}>12</span> */}
                                 </button>
                             </Tippy>
                         </>
