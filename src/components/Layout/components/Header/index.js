@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
 import className from 'classnames/bind'
+import Tippy from '@tippyjs/react'
+import 'tippy.js/dist/tippy.css'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
-    faCircleXmark,
-    faSpinner,
-    faMagnifyingGlass,
     faEllipsisVertical,
     faEarthAsia,
     faQuestionCircle,
@@ -12,22 +11,18 @@ import {
     faUser,
     faGear,
     faSignOut,
+    faCoins,
 } from '@fortawesome/free-solid-svg-icons'
-import { faBitcoin } from '@fortawesome/free-brands-svg-icons'
-
-import Tippy from '@tippyjs/react'
-import HeadlessTippy from '@tippyjs/react/headless'
-import 'tippy.js/dist/tippy.css'
 
 import Button from '~/components/Button'
-import { Wrapper as PopperWrapper } from '~/components/Popper'
 import styles from './Header.module.scss'
 import images from '~/assets/images'
-import AccountItem from '~/components/AccountItem'
 import Menu from '~/components/Popper/Menu'
 import Image from '~/components/Image'
-import { MessageIcon, UploadIcon, InboxIcon } from '~/components/Icons'
+import { UploadIcon, MessageIcon, InboxIcon } from '~/components/Icons'
+import Search from '../Search'
 
+// Const
 const cx = className.bind(styles)
 
 const MENU_ITEMS = [
@@ -62,15 +57,7 @@ const MENU_ITEMS = [
 ]
 
 function Header() {
-    const [searchResult, setSearchReasult] = useState([])
-
     const currentUser = true
-
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchReasult([])
-        }, 0)
-    }, [])
 
     // Hanlde logic
     const handleMenuChange = (menuItem) => {
@@ -89,7 +76,7 @@ function Header() {
             to: '/profile',
         },
         {
-            icon: <FontAwesomeIcon icon={faBitcoin} />,
+            icon: <FontAwesomeIcon icon={faCoins} />,
             title: 'Get coins',
             to: '/coin',
         },
@@ -112,37 +99,7 @@ function Header() {
             <div className={cx('inner')}>
                 <img src={images.logo} alt="TikTok" />
 
-                <HeadlessTippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className={cx('search-title')}>Accounts</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperWrapper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input
-                            onChange={(e) => {
-                                setSearchReasult(e.target.value)
-                            }}
-                            placeholder="Search account and videos"
-                            spellCheck={false}
-                        />
-
-                        <button className={cx('clear')}>{<FontAwesomeIcon icon={faCircleXmark} />}</button>
-
-                        {<FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-
-                        <button className={cx('search-btn')}>{<FontAwesomeIcon icon={faMagnifyingGlass} />}</button>
-                    </div>
-                </HeadlessTippy>
+                {<Search />}
 
                 <div className={cx('actions')}>
                     {currentUser ? (
